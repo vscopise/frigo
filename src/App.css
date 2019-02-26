@@ -12,22 +12,48 @@ html, body {
   position: relative;
 }
 
-.carousel .slide {
-  background: #fff;
+.slider {
+  height: 100%;
 }
 
-.carousel .slide img {
-    max-height: 100vh;  /* change this to whatever you want */
-    width: auto;
-    position: absolute;
-    left: 0;
+.slider-wrapper a.previousButton,
+.slider-wrapper a.nextButton {
+  display: none;
+}
+.track {
+  height: 98vh;
+}
+.slide.slider-content {
+  background-size: 90vh !important;
+
 }
 
-.carousel .slide .slide-content {
-    position: absolute;
-    right: 0;
-    padding: 0 5vw;
+/* Animaciones */
+.slider-wrapper {
+  position: relative;
+  height: 100vh;
 }
+
+.slider-content .inner {
+  padding: 0 70px;
+  box-sizing: border-box;
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.slider-content .inner h2 {
+  font-weight: 900;
+  max-width: 840px;
+  color: #000000;
+  font-size: 48px;
+  line-height: 1;
+}
+
+
 .precio-anterior::before,
 .precio-nuevo::before {
   content: '$';
