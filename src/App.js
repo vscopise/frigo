@@ -30,8 +30,8 @@ class SliderProducts extends Component {
   fetchProducts = () => {
     var category = '';
     var location = window.location.pathname.split('/').filter(x=>x).pop();
-    if ( '' !== window.location.pathname ) {
-      var category = '?category=' + this.state.categories.find(
+    if ( '/' !== window.location.pathname && '' !== window.location.pathname) {
+      category = '?category=' + this.state.categories.find(
         cat => cat.slug === location
       ).id
     }
