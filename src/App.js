@@ -81,7 +81,21 @@ class SliderProducts extends Component {
                         product.sale_price !== '' &&
                         <p 	className="precio-nuevo">{product.sale_price}</p>
                       }
-                      <p 	className="precio_vigencia"> 30/03</p>
+                      {
+                        product.date_on_sale_to !== null &&
+                        <p 	className="precio-vigencia">Vigencia:&nbsp;
+                          {
+                              new Date(product.date_on_sale_to).toLocaleString(
+                                'es-ES',
+                                { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                }
+                            )
+                          }
+                        </p>
+                      }
                     </div> 
                 </div>
             ))
@@ -104,8 +118,11 @@ class App extends Component {
       token: false,
     }
   }
+
   componentDidMount() {
-    //console.log(window.location.search);
+    var style = window.location.search.split('=').filter(x=>x).pop();
+    this.setState({style});
+
     this.fetchToken();
   }
 
@@ -125,8 +142,7 @@ class App extends Component {
         token: data.token,
         isLoading: false,
     }))
-    .then( this.fetchCategories )
-    
+    .then( this.fetchCategories )  
     .catch(error => console.log(error))
   }
 
@@ -145,15 +161,15 @@ class App extends Component {
     //.then( this.fetchProducts )
   }
 
-  
   render() {
     return (
-      <div className="App">
+      <div className={`App animacion${this.state.style}`}>
       {
         this.state.categories &&
         <SliderProducts
           token={this.state.token}
           categories={this.state.categories}
+          intlData = {this.state.intlData}
         />
       }
       {
